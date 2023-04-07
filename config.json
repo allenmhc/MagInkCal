@@ -1,10 +1,10 @@
 {
-  "displayTZ": "Asia/Hong_Kong",
+  "displayTZ": "America/Los_Angeles",
   "thresholdHours": 24,
   "maxEventsPerDay": 3,
   "isDisplayToScreen": false,
   "isShutdownOnComplete": false,
-  "batteryDisplayMode": 1,
+  "batteryDisplayMode": 0,
   "weekStartDay": 6,
   "dayOfWeekText": ["M", "T", "W", "T", "F", "S", "S"],
   "screenWidth": 1304,
