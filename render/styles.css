@@ -91,11 +91,11 @@ body {
 
 /* Rotate 90° to render it properly to the e-ink display in landscape */
 .rotate-container {
-  transform: rotate(-90deg);
-  transform-origin:bottom right;
+  transform: rotate(90deg);
+  transform-origin:bottom left;
   position:absolute;
   top:-100vw;
-  right:0;
+  left:-50vw;
   height:100vw;
   width:100vh;
 }
