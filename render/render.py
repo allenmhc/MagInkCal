@@ -106,9 +106,9 @@ class RenderHelper:
 
     def process_inputs(self, calDict):
         # calDict = {'events': eventList, 'calStartDate': calStartDate, 'today': currDate, 'lastRefresh': currDatetime, 'batteryLevel': batteryLevel}
-        # first setup list to represent the 5 weeks in our calendar
+        # first setup list to represent the 3 weeks in our calendar
         calList = []
-        for i in range(35):
+        for i in range(21):
             calList.append([])
 
         # retrieve calendar configuration
@@ -132,8 +132,11 @@ class RenderHelper:
         with open(self.currPath + '/calendar_template.html', 'r') as file:
             calendar_template = file.read()
 
-        # Insert month header
-        month_name = str(calDict['today'].month)
+        # Insert month + date + day header
+        today = calDict['today']
+        month_name = today.strftime('%B')
+        month_date_name = str(today.day)
+        month_day_name = today.strftime('%A')
 
         # Insert battery icon
         # batteryDisplayMode - 0: do not show / 1: always show / 2: show when battery is low
@@ -161,7 +164,7 @@ class RenderHelper:
         # Populate the day of week row
         cal_days_of_week = ''
         for i in range(0, 7):
-            cal_days_of_week += '<li class="font-weight-bold text-uppercase">' + dayOfWeekText[
+            cal_days_of_week += '<li class="text-uppercase">' + dayOfWeekText[
                 (i + weekStartDay) % 7] + "</li>\n"
 
         # Populate the date and events
@@ -202,7 +205,11 @@ class RenderHelper:
 
         # Append the bottom and write the file
         htmlFile = open(self.currPath + '/calendar.html', "w")
-        htmlFile.write(calendar_template.format(month=month_name, battText=battText, dayOfWeek=cal_days_of_week,
+        htmlFile.write(calendar_template.format(monthName=month_name,
+                                                monthDateName=month_date_name,
+                                                monthDayName=month_day_name,
+                                                battText=battText,
+                                                dayOfWeek=cal_days_of_week,
                                                 events=cal_events_text))
         htmlFile.close()
 

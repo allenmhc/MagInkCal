@@ -55,27 +55,28 @@ body {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
+    color: #333;
     text-align: left;
     background-color: #fff;
 }
 
 @font-face {
-    font-family: "Quattrocento-Bold";
-    src: url('Quattrocento-Bold.ttf');
+  font-family: "Colfax";
+  src: url('Colfax-Regular.otf');
 }
 
 @font-face {
-    font-family: "Quattrocento-Regular";
-    src: url('Quattrocento-Regular.ttf');
+  font-family: "Colfax";
+  src: url('Colfax-Bold.otf');
+  font-weight: bold;
 }
 
 .container {
     width: 100%;
     padding: 0!important;
     margin: 0!important;
-    max-width: 984px;
-    height: 1304px;
+    max-width: 1304px;
+    height: 984px;
 }
 *, ::after, ::before {
     box-sizing: border-box;
@@ -88,34 +89,56 @@ body {
   visibility: hidden;
 }
 
+/* Rotate 90° to render it properly to the e-ink display in landscape */
+.rotate-container {
+  transform: rotate(-90deg);
+  transform-origin:bottom right;
+  position:absolute;
+  top:-100vw;
+  right:0;
+  height:100vw;
+  width:100vh;
+}
+
 /* ================
 Calendar Styling */
 .calendar {
   border-radius: 0px;
+  font-family: "Colfax";
 }
 
-.month {
-  font-size: 13rem;
-  font-family: "Quattrocento-Regular";
+.today-header .month-name, .today-header .date-name, .today-header .day-name {
+  padding-left: 5%;
+  padding-right: 5%;
 }
 
-@media (min-width: 992px) {
-  .month {
-    font-size: 13rem;
-    line-height: 13rem;
-    font-family: "Quattrocento-Regular";
-  }
+.today-header .month-name {
+  font-size: 3rem;
+  line-height: 3rem;
+  border-bottom: 1px solid #333;
+}
+
+.today-header .date-name {
+  font-size: 10rem;
+  padding-top: 3rem;
+  line-height: 7rem;
+  font-weight: bold;
+}
+
+.today-header .day-name {
+  line-height: 2rem;
+  border-bottom: 1px solid #333;
 }
 
 .calendar ol li {
   float: left;
   width: 14.28571%;
+  /*letter-spacing: 0.05em;*/
 }
 
 .calendar .day-names {
   font-size: 3.5rem;
   line-height: 1.2;
-  font-family: "Quattrocento-Regular";
 }
 
 .calendar .day-names li {
@@ -136,9 +159,8 @@ Calendar Styling */
 
 .calendar .date {
   text-align: center;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: bold;
-  font-family: "Quattrocento-Regular";
 }
 
 .datecirclebox {
@@ -150,10 +172,10 @@ Calendar Styling */
     width:4rem;
     height:4rem;
     border-radius:2rem;
-    font-family: "Quattrocento-Regular";
-    font-size:3rem;
+    font-size:2.5rem;
     color:white;
-    line-height: 4rem;
+    line-height: 4.5rem;
+    margin-top: -0.5rem;
     text-align:center;
     vertical-align: middle;
     background:#ff0000;
@@ -161,10 +183,7 @@ Calendar Styling */
 
 .calendar .days li .event {
   font-size: 1rem;
-  /* font-weight: bold;*/
   padding: 0.1rem;
-  /* color: black; */
-  /* font-family: "Judson-Regular";*/
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
