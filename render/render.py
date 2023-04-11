@@ -132,6 +132,9 @@ class RenderHelper:
         with open(self.currPath + '/calendar_template.html', 'r') as file:
             calendar_template = file.read()
 
+        # Determine whether we have to rotate the calendar for displaying landscape
+        rotate_screen = 'rotate-container' if calDict['isDisplayToScreen'] else ''
+
         # Insert month + date + day header
         today = calDict['today']
         month_name = today.strftime('%B')
@@ -205,7 +208,8 @@ class RenderHelper:
 
         # Append the bottom and write the file
         htmlFile = open(self.currPath + '/calendar.html', "w")
-        htmlFile.write(calendar_template.format(monthName=month_name,
+        htmlFile.write(calendar_template.format(rotateClass=rotate_screen,
+                                                monthName=month_name,
                                                 monthDateName=month_date_name,
                                                 monthDayName=month_day_name,
                                                 battText=battText,
