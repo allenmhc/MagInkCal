@@ -9,9 +9,9 @@
   "dayOfWeekText": ["M", "T", "W", "T", "F", "S", "S"],
   "screenWidth": 1304,
   "screenHeight": 984,
-  "imageWidth": 984,
-  "imageHeight": 1304,
-  "rotateAngle": 270,
+  "imageWidth": 1304,
+  "imageHeight": 984,
+  "rotateAngle": 180,
   "is24h": false,
   "calendars": [
     "primary"
