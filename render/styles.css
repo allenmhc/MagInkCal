@@ -89,17 +89,6 @@ body {
   visibility: hidden;
 }
 
-/* Rotate 90° to render it properly to the e-ink display in landscape */
-.rotate-container {
-  transform: rotate(90deg);
-  transform-origin:bottom left;
-  position:absolute;
-  top:-100vw;
-  left:-50vw;
-  height:100vw;
-  width:100vh;
-}
-
 /* ================
 Calendar Styling */
 .calendar {
