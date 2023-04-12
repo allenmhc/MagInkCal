@@ -119,6 +119,21 @@ Calendar Styling */
   border-bottom: 1px solid #333;
 }
 
+.sidebar-events {
+  width: 30rem;
+  padding-top: 1.5rem;
+}
+
+.sidebar-event .event-day-name {
+  min-width: 4rem;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.sidebar-event .event-summary {
+  margin-left: 1rem;
+}
+
 .calendar ol li {
   float: left;
   width: 14.28571%;
@@ -137,8 +152,7 @@ Calendar Styling */
 }
 
 .calendar .days li {
-  /* min-height: 12rem; */
-  min-height: 11.5rem;
+  min-height: 17rem;
 }
 
 .calendar .days li .date {

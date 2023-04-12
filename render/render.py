@@ -106,19 +106,20 @@ class RenderHelper:
 
     def process_inputs(self, calDict):
         # calDict = {'events': eventList, 'calStartDate': calStartDate, 'today': currDate, 'lastRefresh': currDatetime, 'batteryLevel': batteryLevel}
-        # first setup list to represent the 3 weeks in our calendar
-        calList = []
-        for i in range(21):
-            calList.append([])
+        calList = [[] for _ in range(calDict['numberOfWeeks']*7)]
+        calEvents = []
 
         # retrieve calendar configuration
         maxEventsPerDay = calDict['maxEventsPerDay']
+        maxEventsSidebar = calDict['maxEventsSidebar']
         batteryDisplayMode = calDict['batteryDisplayMode']
         dayOfWeekText = calDict['dayOfWeekText']
         weekStartDay = calDict['weekStartDay']
         is24hour = calDict['is24hour']
 
-        # for each item in the eventList, add them to the relevant day in our calendar list
+        # for each item in the eventList:
+        # - add them to the relevant day in our calendar list
+        # - add to the overall events list on the side
         for event in calDict['events']:
             idx = self.get_day_in_cal(calDict['calStartDate'], event['startDatetime'].date())
             if idx >= 0:
@@ -127,6 +128,8 @@ class RenderHelper:
                 idx = self.get_day_in_cal(calDict['calStartDate'], event['endDatetime'].date())
                 if idx < len(calList):
                     calList[idx].append(event)
+            if event['startDatetime'].date() >= calDict['today'] and len(calEvents) < maxEventsSidebar:
+                calEvents.append(event)
 
         # Read html template
         with open(self.currPath + '/calendar_template.html', 'r') as file:
@@ -137,6 +140,18 @@ class RenderHelper:
         month_name = today.strftime('%B')
         month_date_name = str(today.day)
         month_day_name = today.strftime('%A')
+
+        # Populate sidebar events
+        cal_sidebar_events_text = ''
+        for event in calEvents:
+            day_name = event['startDatetime'].date().strftime('%a')
+            date_number = str(event['startDatetime'].date().day)
+            summary = event['summary']
+            cal_sidebar_events_text += '<li class="sidebar-event mb-1">'
+            cal_sidebar_events_text += '<span class="event-day-name text-right">%s %s</span>' % (day_name, date_number)
+            #cal_sidebar_events_text += '<span class="event-date-number">%s</span>' % date_number
+            cal_sidebar_events_text += '<span class="event-summary">%s</span>' % summary
+            cal_sidebar_events_text += '</li>'
 
         # Insert battery icon
         # batteryDisplayMode - 0: do not show / 1: always show / 2: show when battery is low
@@ -208,9 +223,10 @@ class RenderHelper:
         htmlFile.write(calendar_template.format(monthName=month_name,
                                                 monthDateName=month_date_name,
                                                 monthDayName=month_day_name,
+                                                cal_sidebar_events=cal_sidebar_events_text,
                                                 battText=battText,
                                                 dayOfWeek=cal_days_of_week,
-                                                events=cal_events_text))
+                                                cal_events=cal_events_text))
         htmlFile.close()
 
         calBlackImage, calRedImage = self.get_screenshot()

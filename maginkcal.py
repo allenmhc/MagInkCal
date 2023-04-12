@@ -27,11 +27,13 @@ def main():
     displayTZ = timezone(config['displayTZ']) # list of timezones - print(pytz.all_timezones)
     thresholdHours = config['thresholdHours']  # considers events updated within last 12 hours as recently updated
     maxEventsPerDay = config['maxEventsPerDay']  # limits number of events to display (remainder displayed as '+X more')
+    maxEventsSidebar = config['maxEventsSidebar']   # limits number of events to dislay on the sidebar of the header
     isDisplayToScreen = config['isDisplayToScreen']  # set to true when debugging rendering without displaying to screen
     isShutdownOnComplete = config['isShutdownOnComplete']  # set to true to conserve power, false if in debugging mode
     batteryDisplayMode = config['batteryDisplayMode']  # 0: do not show / 1: always show / 2: show when battery is low
     weekStartDay = config['weekStartDay']  # Monday = 0, Sunday = 6
     dayOfWeekText = config['dayOfWeekText'] # Monday as first item in list
+    numberOfWeeks = config['numberOfWeeks'] # number of weeks to show
     screenWidth = config['screenWidth']  # Width of E-Ink display. Default is landscape. Need to rotate image to fit.
     screenHeight = config['screenHeight']  # Height of E-Ink display. Default is landscape. Need to rotate image to fit.
     imageWidth = config['imageWidth']  # Width of image to be generated for display.
@@ -61,7 +63,7 @@ def main():
         logger.info("Time synchronised to {}".format(currDatetime))
         currDate = currDatetime.date()
         calStartDate = currDate - dt.timedelta(days=((currDate.weekday() + (7 - weekStartDay)) % 7))
-        calEndDate = calStartDate + dt.timedelta(days=(3 * 7 - 1))
+        calEndDate = calStartDate + dt.timedelta(days=(numberOfWeeks * 7 - 1))
         calStartDatetime = displayTZ.localize(dt.datetime.combine(calStartDate, dt.datetime.min.time()))
         calEndDatetime = displayTZ.localize(dt.datetime.combine(calEndDate, dt.datetime.max.time()))
 
@@ -72,10 +74,15 @@ def main():
         logger.info("Calendar events retrieved in " + str(dt.datetime.now() - start))
 
         # Populate dictionary with information to be rendered on e-ink display
-        calDict = {'events': eventList, 'calStartDate': calStartDate, 'today': currDate, 'lastRefresh': currDatetime,
-                   'batteryLevel': currBatteryLevel, 'batteryDisplayMode': batteryDisplayMode,
-                   'dayOfWeekText': dayOfWeekText, 'weekStartDay': weekStartDay, 'maxEventsPerDay': maxEventsPerDay,
-                   'is24hour': is24hour}
+        calDict = {
+            'events': eventList, 'calStartDate': calStartDate,
+            'today': currDate, 'lastRefresh': currDatetime,
+            'batteryLevel': currBatteryLevel, 'batteryDisplayMode': batteryDisplayMode,
+            'dayOfWeekText': dayOfWeekText, 'weekStartDay': weekStartDay,
+            'maxEventsPerDay': maxEventsPerDay, 'maxEventsSidebar': maxEventsSidebar,
+            'numberOfWeeks': numberOfWeeks,
+            'is24hour': is24hour
+        }
 
         renderService = RenderHelper(imageWidth, imageHeight, rotateAngle)
         calBlackImage, calRedImage = renderService.process_inputs(calDict)

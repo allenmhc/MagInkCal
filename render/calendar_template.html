@@ -10,6 +10,9 @@
         <!-- Month -->
         <div class="today-header align-items-center">
             <h3 class="month-name mb-0 text-uppercase text-left">{monthName}</h3>
+            <ul class="sidebar-events list-unstyled float-right">
+                {cal_sidebar_events}
+            </ul>
             <h1 class="date-name text-left">{monthDateName}</h1>
             <h4 class="day-name text-left">{monthDayName}</h4>
         </div>
@@ -18,7 +21,7 @@
         <!-- Days of week -->
         <ol class="day-names list-unstyled text-center">{dayOfWeek}</ol>
         <!-- Calendar and events -->
-        <ol class="days list-unstyled">{events}</ol>
+        <ol class="days list-unstyled">{cal_events}</ol>
     </div>
 </div>
 </body>
