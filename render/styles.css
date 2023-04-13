@@ -71,6 +71,17 @@ body {
   font-weight: bold;
 }
 
+@font-face {
+  font-family: "Lexend";
+  src: url('Lexend-Regular.otf');
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url('Lexend-Bold.otf');
+  font-weight: bold;
+}
+
 .container {
     width: 100%;
     padding: 0!important;
@@ -93,7 +104,7 @@ body {
 Calendar Styling */
 .calendar {
   border-radius: 0px;
-  font-family: "Colfax";
+  font-family: "Lexend";
 }
 
 .today-header .month-name, .today-header .date-name, .today-header .day-name {
