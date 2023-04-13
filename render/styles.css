@@ -82,6 +82,11 @@ body {
   font-weight: bold;
 }
 
+@font-face {
+  font-family: "Tilt-Warp";
+  src: url('TiltWarp-Regular.ttf');
+}
+
 .container {
     width: 100%;
     padding: 0!important;
@@ -104,7 +109,7 @@ body {
 Calendar Styling */
 .calendar {
   border-radius: 0px;
-  font-family: "Lexend";
+  font-family: "Tilt-Warp";
 }
 
 .today-header .month-name, .today-header .date-name, .today-header .day-name {
