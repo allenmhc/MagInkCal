@@ -62,7 +62,7 @@ body {
 
 @font-face {
   font-family: "Colfax";
-  src: url('Colfax-Regular.otf');
+  src: url('Colfax-Medium.otf');
 }
 
 @font-face {
@@ -104,7 +104,7 @@ body {
 Calendar Styling */
 .calendar {
   border-radius: 0px;
-  font-family: "NanumGothic";
+  font-family: "Colfax";
 }
 
 .today-header .month-name, .today-header .date-name, .today-header .day-name {
