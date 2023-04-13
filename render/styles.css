@@ -71,22 +71,6 @@ body {
   font-weight: bold;
 }
 
-@font-face {
-  font-family: "Lexend";
-  src: url('Lexend-Medium.ttf');
-}
-
-@font-face {
-  font-family: "Lexend";
-  src: url('Lexend-Black.ttf');
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: "Tilt-Warp";
-  src: url('TiltWarp-Regular.ttf');
-}
-
 .container {
     width: 100%;
     padding: 0!important;
@@ -109,7 +93,7 @@ body {
 Calendar Styling */
 .calendar {
   border-radius: 0px;
-  font-family: "Tilt-Warp";
+  font-family: "Colfax";
 }
 
 .today-header .month-name, .today-header .date-name, .today-header .day-name {
