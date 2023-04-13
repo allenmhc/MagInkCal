@@ -73,12 +73,12 @@ body {
 
 @font-face {
   font-family: "Lexend";
-  src: url('Lexend-Regular.otf');
+  src: url('Lexend-Medium.ttf');
 }
 
 @font-face {
   font-family: "Lexend";
-  src: url('Lexend-Bold.otf');
+  src: url('Lexend-Black.ttf');
   font-weight: bold;
 }
 
