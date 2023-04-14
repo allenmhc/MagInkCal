@@ -3,7 +3,7 @@
   "thresholdHours": 24,
   "maxEventsPerDay": 3,
   "maxEventsSidebar": 5,
-  "isDisplayToScreen": false,
+  "isDisplayToScreen": true,
   "isShutdownOnComplete": false,
   "batteryDisplayMode": 0,
   "weekStartDay": 6,

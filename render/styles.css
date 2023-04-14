@@ -128,11 +128,11 @@ Calendar Styling */
   min-width: 4rem;
   display: inline-block;
   font-weight: bold;
-  color: #222;
 }
 
 .sidebar-event .event-summary {
   margin-left: 1rem;
+  color: #444;
 }
 
 .calendar ol li {
@@ -192,6 +192,7 @@ Calendar Styling */
   text-overflow: ellipsis;
   border-radius: 0rem;
   margin-bottom: 1px;
+  color: #444;
 }
 
 .calendar .days li .event.span-2 {
