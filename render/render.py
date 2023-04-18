@@ -92,16 +92,15 @@ class RenderHelper:
             datetime_str = '{}:{:02d}'.format(datetimeObj.hour, datetimeObj.minute)
         else:
             if datetimeObj.minute > 0:
-                datetime_str = '.{:02d}'.format(datetimeObj.minute)
-
+                datetime_str = '<span class="time-minute">{:02d}</span>'.format(datetimeObj.minute)
             if datetimeObj.hour == 0:
-                datetime_str = '12{}am'.format(datetime_str)
+                datetime_str = '12{}a'.format(datetime_str)
             elif datetimeObj.hour == 12:
-                datetime_str = '12{}pm'.format(datetime_str)
+                datetime_str = '12{}p'.format(datetime_str)
             elif datetimeObj.hour > 12:
-                datetime_str = '{}{}pm'.format(str(datetimeObj.hour % 12), datetime_str)
+                datetime_str = '{}{}p'.format(str(datetimeObj.hour % 12), datetime_str)
             else:
-                datetime_str = '{}{}am'.format(str(datetimeObj.hour), datetime_str)
+                datetime_str = '{}{}a'.format(str(datetimeObj.hour), datetime_str)
         return datetime_str
 
     def process_inputs(self, calDict):
@@ -203,15 +202,15 @@ class RenderHelper:
                     cal_events_text += ' text-muted'
                 if event['isMultiday']:
                     if event['startDatetime'].date() == currDate:
-                        cal_events_text += '">►' + event['summary']
+                        cal_events_text += ' all-day">►' + event['summary']
                     else:
-                        # calHtmlList.append(' text-multiday">')
-                        cal_events_text += '">◄' + event['summary']
+                        cal_events_text += ' all-day">◄' + event['summary']
                 elif event['allday']:
-                    cal_events_text += '">' + event['summary']
+                    cal_events_text += ' all-day">' + event['summary']
                 else:
-                    cal_events_text += '">' + self.get_short_time(event['startDatetime'], is24hour) + ' ' + event[
-                        'summary']
+                    cal_events_text += ' timed-day">'
+                    cal_events_text += '<div class="time-display">' + self.get_short_time(event['startDatetime'], is24hour) + '</div>'
+                    cal_events_text += event['summary']
                 cal_events_text += '</div>\n'
             if len(calList[i]) > maxEventsPerDay:
                 cal_events_text += '<div class="event text-muted">' + str(len(calList[i]) - maxEventsPerDay) + ' more'

@@ -187,12 +187,15 @@ Calendar Styling */
 
 .calendar .days li .event {
   padding: 0.1rem;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   border-radius: 0rem;
-  margin-bottom: 1px;
+  margin-bottom: 0.5rem;
+  line-height: 24px;
   color: #444;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .calendar .days li .event.span-2 {
@@ -221,6 +224,19 @@ Calendar Styling */
 
 .calendar .days li.outside .date {
   color: #ddd;
+}
+
+.calendar .timed-day .time-display {
+  float: left;
+  font-weight: bold;
+  font-size: 18px;
+  padding-right: 0.5rem;
+}
+
+.calendar .timed-day .time-minute {
+  font-size: 14px;
+  vertical-align: top;
+  line-height: 24px;
 }
 
 div.batt_container {
