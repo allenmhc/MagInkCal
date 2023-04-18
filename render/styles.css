@@ -120,8 +120,8 @@ Calendar Styling */
 }
 
 .sidebar-events {
-  width: 30rem;
   padding-top: 1.5rem;
+  padding-right: 5%;
 }
 
 .sidebar-event .event-day-name {
@@ -226,9 +226,8 @@ Calendar Styling */
 div.batt_container {
   width: 53px;
   height: 27px;
-  position: absolute;
-  top: 5;
-  left: 925;
+  margin-top: 0.5rem;
+  margin-right: 5%;
   overflow: hidden;
 }
 
