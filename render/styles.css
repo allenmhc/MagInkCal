@@ -97,14 +97,14 @@ Calendar Styling */
 }
 
 .today-header .month-name, .today-header .date-name, .today-header .day-name {
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 
 .today-header .month-name {
   font-size: 3rem;
   line-height: 3rem;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #666;
 }
 
 .today-header .date-name {
@@ -116,12 +116,11 @@ Calendar Styling */
 
 .today-header .day-name {
   line-height: 2rem;
-  border-bottom: 1px solid #333;
 }
 
 .sidebar-events {
   padding-top: 1.5rem;
-  padding-right: 5%;
+  padding-right: 2%;
 }
 
 .sidebar-event .event-day-name {
@@ -137,13 +136,18 @@ Calendar Styling */
 
 .calendar ol li {
   float: left;
-  width: 14.28571%;
-  /*letter-spacing: 0.05em;*/
+  width: 12.5%;
+  margin-right: 2%;
+}
+
+.calendar ol li:nth-child(7n) {
+  margin-right: 0%;
 }
 
 .calendar .day-names {
-  font-size: 3.5rem;
+  font-size: 2rem;
   line-height: 1;
+  margin-top: 3rem;
 }
 
 .calendar .day-names li {
@@ -154,35 +158,30 @@ Calendar Styling */
 
 .calendar .days li {
   min-height: 18rem;
+  border-top: 3px solid #666;
 }
 
+.calendar .days li.today {
+  border-top-color: #ff0000;
+} 
+
 .calendar .days li .date {
-  margin: 0.5rem 0;
+  margin: 1.5rem 0 0.5rem;
   line-height: 1.0;
 }
 
+.calendar .days li.today {
+  color: #cc0000;
+}
+
 .calendar .date {
-  text-align: center;
+  text-align: left;
   font-size: 2.5rem;
   font-weight: bold;
 }
 
 .datecirclebox {
     position: relative;
-}
-
-.datecircle {
-    margin: 0rem auto;
-    width:4rem;
-    height:4rem;
-    border-radius:2rem;
-    font-size:2.5rem;
-    color:white;
-    line-height: 4.5rem;
-    margin-top: -0.5rem;
-    text-align:center;
-    vertical-align: middle;
-    background:#ff0000;
 }
 
 .calendar .days li .event {
@@ -196,6 +195,10 @@ Calendar Styling */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+}
+
+.calendar .days li.today .event {
+  color: #cc0000;
 }
 
 .calendar .days li .event.span-2 {
@@ -243,7 +246,7 @@ div.batt_container {
   width: 53px;
   height: 27px;
   margin-top: 0.5rem;
-  margin-right: 5%;
+  margin-right: 2%;
   overflow: hidden;
 }
 

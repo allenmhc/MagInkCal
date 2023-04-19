@@ -187,7 +187,7 @@ class RenderHelper:
             currDate = calDict['calStartDate'] + timedelta(days=i)
             dayOfMonth = currDate.day
             if currDate == calDict['today']:
-                cal_events_text += '<li><div class="datecircle">' + str(dayOfMonth) + '</div>\n'
+                cal_events_text += '<li class="today"><div class="date">' + str(dayOfMonth) + '</div>\n'
             elif currDate.month != calDict['today'].month:
                 cal_events_text += '<li><div class="date text-muted">' + str(dayOfMonth) + '</div>\n'
             else:
@@ -196,17 +196,15 @@ class RenderHelper:
             for j in range(min(len(calList[i]), maxEventsPerDay)):
                 event = calList[i][j]
                 cal_events_text += '<div class="event'
-                if event['isUpdated']:
-                    cal_events_text += ' text-danger'
-                elif currDate.month != calDict['today'].month:
+                if currDate.month != calDict['today'].month:
                     cal_events_text += ' text-muted'
                 if event['isMultiday']:
                     if event['startDatetime'].date() == currDate:
-                        cal_events_text += ' all-day">►' + event['summary']
+                        cal_events_text += ' all-day">' + event['summary'] + ' »'
                     else:
-                        cal_events_text += ' all-day">◄' + event['summary']
+                        cal_events_text += ' all-day">« ' + event['summary']
                 elif event['allday']:
-                    cal_events_text += ' all-day">' + event['summary']
+                    cal_events_text += ' all-day">⊚ ' + event['summary']
                 else:
                     cal_events_text += ' timed-day">'
                     cal_events_text += '<div class="time-display">' + self.get_short_time(event['startDatetime'], is24hour) + '</div>'
