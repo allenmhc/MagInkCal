@@ -107,9 +107,9 @@ def main():
     logger.info("Checking if configured to shutdown safely - Current hour: {}".format(currDatetime.hour))
     if isShutdownOnComplete:
         # implementing a failsafe so that we don't shutdown when debugging
-        # checking if it's 6am in the morning, which is the time I've set PiSugar to wake and refresh the calendar
-        # if it is 6am, shutdown the RPi. if not 6am, assume I'm debugging the code, so do not shutdown
-        if currDatetime.hour == 6:
+        # checking if it's early in the morning, which is the time I've set PiSugar to wake and refresh the calendar
+        # if it is between 3am and 6am, shutdown the RPi. If not, assume I'm debugging the code, so do not shutdown
+        if currDatetime.hour >= 3 and currDatetime.hour <= 6:
             logger.info("Shutting down safely.")
             import os
             os.system("sudo shutdown -h now")
